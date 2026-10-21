@@ -42,3 +42,107 @@ h3{font-size:1.1rem;margin-bottom:6px}
 .signup{text-align:center}
 .signup .lead{margin-left:auto;margin-right:auto}
 form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:520px;margin:0 auto}
+label{position:absolute;left:-9999px}
+input[type=email]{flex:1 1 240px;padding:13px 18px;border-radius:999px;border:1px solid #b9aecb;font-size:1rem;background:#fff}
+#msg{margin-top:16px;min-height:1.5em;font-family:"Trebuchet MS",Arial,sans-serif;font-weight:700}
+footer{padding:28px 0;color:var(--muted);font-size:.9rem;text-align:center;border-top:1px solid var(--line)}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:40px 0}.grid{grid-template-columns:1fr}nav{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="logo" href="#top">&hearts; Amoura</a>
+    <nav aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="#stories">Success Stories</a>
+      <a href="#safety">Safety</a>
+    </nav>
+    <a class="btn" href="#waitlist">Join the Waitlist</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <h1>Connections,<br>Not Just Swipes.</h1>
+      <p>Skip the dead-end small talk. Meet interesting singles near you who love the things you love, and start chatting instantly.</p>
+      <a class="btn" href="#waitlist">Join the Waitlist</a>
+    </div>
+    <div class="phone" aria-label="Example conversation">
+      <div class="msg them">You also hike on weekends? Where's your favorite trail?</div>
+      <div class="msg me">The ridge loop by the lake. Sunrise is worth the early alarm.</div>
+      <div class="msg them">Okay, now I'm jealous. Coffee first, then trail?</div>
+      <div class="msg me">Deal. Saturday?</div>
+      <div class="note">Example chat. The app is coming soon.</div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <h2>From "Hey" to Date Night in 3 Steps</h2>
+      <p class="lead">Amoura is built around conversation, so you spend less time swiping and more time talking.</p>
+      <div class="grid">
+        <div><h3>1. Set your interests</h3><p>Pick the things you love, from hiking to cooking to live music, so your matches start with something in common.</p></div>
+        <div><h3>2. Meet people nearby</h3><p>See singles near you who share your interests, and say hello right away.</p></div>
+        <div><h3>3. Chat, then meet</h3><p>Talk instantly and plan a real date when it feels right.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stories">
+    <div class="wrap">
+      <h2>Success Stories</h2>
+      <p class="lead">Amoura hasn't launched yet, so our first stories are still ahead. Join the waitlist and you could be one of them.</p>
+      <a class="btn" href="#waitlist">Join the Waitlist</a>
+    </div>
+  </section>
+
+  <section id="safety" class="safety">
+    <div class="wrap">
+      <h2>Safety</h2>
+      <p class="lead">Meeting people online should feel comfortable. Here is what we are building into Amoura.</p>
+      <div class="grid">
+        <div><h3>Adults only</h3><p>Amoura is for people 18 and over.</p></div>
+        <div><h3>Report and block</h3><p>Stop any conversation in one tap and tell us what happened.</p></div>
+        <div><h3>You control your info</h3><p>You choose what appears on your profile.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="waitlist" class="signup">
+    <div class="wrap">
+      <h2>Be first to know when Amoura launches</h2>
+      <p class="lead">Leave your email and we'll tell you the day the app is ready to download.</p>
+      <form id="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label for="email">Email address</label>
+        <input id="email" type="email" name="email" placeholder="Your email address" required>
+        <button class="btn" type="submit">Join the Waitlist</button>
+      </form>
+      <p id="msg" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 Amoura. All rights reserved.</div>
+</footer>
+
+<script>
+var form=document.getElementById('form'),msg=document.getElementById('msg');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  msg.style.color='';
+  msg.textContent='Sending...';
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+    .then(function(r){
+      if(r.ok){msg.style.color='#1b7a3d';msg.textContent='You\u2019re on the list! We\u2019ll email you at launch.';form.reset();}
+      else{throw new Error();}
+    })
+    .catch(function(){msg.style.color='#b3261e';msg.textContent='Something went wrong. Please check your email address and try again.';});
+});
+</script>
+</body>
+</html>
+
